@@ -1,4 +1,4 @@
-console.log(`%ccollapsable-cards\n%cVersion: ${'0.0.1'}`, 'color: rebeccapurple; font-weight: bold;', '');
+console.log(`%ccollapsable-cards-st\n%cVersion: ${'0.0.1'}`, 'color: rebeccapurple; font-weight: bold;', '');
 
 class VerticalStackInCard extends HTMLElement {
   constructor() {
