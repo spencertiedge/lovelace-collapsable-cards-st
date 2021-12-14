@@ -67,7 +67,7 @@ class VerticalStackInCard extends HTMLElement {
 
     const icon = document.createElement('ha-icon');
     icon.className = 'toggle-button__icon-' + this.id
-    icon.setAttribute('icon', 'mdi:chevron-down')
+    icon.setAttribute('icon', 'mdi:magnify')
     this.icon = icon
     toggleButton.appendChild(icon)
 
@@ -76,7 +76,7 @@ class VerticalStackInCard extends HTMLElement {
 
   styleCard(isToggled) {
     this.cardList.classList[isToggled ? 'add' : 'remove']('is-toggled')
-    this.icon.setAttribute('icon', isToggled ? 'mdi:chevron-up' : 'mdi:chevron-down')
+    this.icon.setAttribute('icon', isToggled ? 'mdi:chevron-up' : 'mdi:home')
   }
 
   async createCardElement(cardConfig) {
