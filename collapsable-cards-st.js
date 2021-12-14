@@ -188,7 +188,7 @@ class VerticalStackInCard extends HTMLElement {
         color: var(--paper-item-icon-color, #aaa);
       }
 
-      .type-custom-collapsable-cards {
+      .type-custom-collapsable-cards-st {
         background: transparent;
       }
     `;
@@ -196,11 +196,11 @@ class VerticalStackInCard extends HTMLElement {
 
 }
 
-customElements.define('collapsable-cards', VerticalStackInCard);
+customElements.define('collapsable-cards-st', VerticalStackInCard);
 
 window.customCards = window.customCards || [];
 window.customCards.push({
-  type: "collapsable-cards",
+  type: "collapsable-cards-st",
   name: "Collapsable Card",
   preview: false,
   description: "The Collapsable Card allows you to hide other cards behind a dropdown toggle."
