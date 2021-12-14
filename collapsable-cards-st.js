@@ -1,4 +1,4 @@
-console.log(`%ccollapsable-cards-st\n%cVersion: ${'0.1.1'}`, 'color: rebeccapurple; font-weight: bold;', '');
+console.log(`%ccollapsable-cards-st\n%cVersion: ${'0.1.2'}`, 'color: rebeccapurple; font-weight: bold;', '');
 
 class VerticalStackInCard extends HTMLElement {
   constructor() {
@@ -14,6 +14,7 @@ class VerticalStackInCard extends HTMLElement {
       throw new Error('Supply the `cards` property');
     }
     this.isToggled = config.defaultOpen || false
+    this.defaultIcon = config.defaultIcon || 'mdi:chevron-down'
     this.closedIcon = config.closedIcon || 'mdi:chevron-down'
     this.openIcon = config.openIcon || 'mdi:chevron-up'
     this._config = config;
@@ -69,7 +70,7 @@ class VerticalStackInCard extends HTMLElement {
 
     const icon = document.createElement('ha-icon');
     icon.className = 'toggle-button__icon-' + this.id
-    icon.setAttribute('icon', 'mdi:magnify')
+    icon.setAttribute('icon', this.defaultIcon)
     this.icon = icon
     toggleButton.appendChild(icon)
 
