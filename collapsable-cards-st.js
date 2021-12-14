@@ -14,6 +14,8 @@ class VerticalStackInCard extends HTMLElement {
       throw new Error('Supply the `cards` property');
     }
     this.isToggled = config.defaultOpen || false
+    this.closedIcon = config.closedIcon || 'mdi:chevron-down'
+    this.openIcon = config.openIcon || 'mdi:chevron-up'
     this._config = config;
     this._refCards = [];
     this.renderCard();
@@ -76,7 +78,7 @@ class VerticalStackInCard extends HTMLElement {
 
   styleCard(isToggled) {
     this.cardList.classList[isToggled ? 'add' : 'remove']('is-toggled')
-    this.icon.setAttribute('icon', isToggled ? 'mdi:chevron-up' : 'mdi:home')
+    this.icon.setAttribute('icon', isToggled ? this.openIcon : this.closedIcon)
   }
 
   async createCardElement(cardConfig) {
