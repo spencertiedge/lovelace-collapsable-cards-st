@@ -1,4 +1,4 @@
-console.log(`%ccollapsable-cards-st\n%cVersion: ${'0.1.5'}`, 'color: rebeccapurple; font-weight: bold;', '');
+console.log(`%ccollapsable-cards-st\n%cVersion: ${'0.1.6'}`, 'color: rebeccapurple; font-weight: bold;', '');
 
 class VerticalStackInCard extends HTMLElement {
   constructor() {
@@ -15,7 +15,7 @@ class VerticalStackInCard extends HTMLElement {
     }
     this.isToggled = config.defaultOpen || false
     this.defaultIcon = config.defaultIcon || 'mdi:chevron-down'
-    this.closedIcon = config.closedIcon || 'mdi:chevron-down'
+    this.closeIcon = config.closeIcon || 'mdi:chevron-down'
     this.openIcon = config.openIcon || 'mdi:chevron-up'
     this._config = config;
     this._refCards = [];
@@ -79,7 +79,7 @@ class VerticalStackInCard extends HTMLElement {
 
   styleCard(isToggled) {
     this.cardList.classList[isToggled ? 'add' : 'remove']('is-toggled')
-    this.icon.setAttribute('icon', isToggled ? this.openIcon : this.closedIcon)
+    this.icon.setAttribute('icon', isToggled ? this.closeIcon : this.openIcon)
   }
 
   async createCardElement(cardConfig) {
