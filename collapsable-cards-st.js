@@ -70,7 +70,7 @@ class VerticalStackInCard extends HTMLElement {
 
     const icon = document.createElement('ha-icon');
     icon.className = 'toggle-button__icon-' + this.id
-    icon.setAttribute('icon', this.isToggled ? this.openIcon : this.closedIcon)
+    icon.setAttribute('icon', config.defaultOpen ? this.openIcon : this.closedIcon)
     this.icon = icon
     toggleButton.appendChild(icon)
 
