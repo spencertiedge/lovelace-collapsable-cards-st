@@ -1,4 +1,4 @@
-console.log(`%ccollapsable-cards-st\n%cVersion: ${'0.1.7'}`, 'color: rebeccapurple; font-weight: bold;', '');
+console.log(`%ccollapsable-cards-st\n%cVersion: ${'0.4.0'}`, 'color: rebeccapurple; font-weight: bold;', '');
 
 class VerticalStackInCard extends HTMLElement {
   constructor() {
@@ -13,7 +13,16 @@ class VerticalStackInCard extends HTMLElement {
     if (!config || !config.cards || !Array.isArray(config.cards)) {
       throw new Error('Supply the `cards` property');
     }
-    this.isToggled = config.defaultOpen || false
+
+	let isMobile = window.matchMedia("only screen and (max-width: 760px)").matches;
+	if (config.defaultOpen == true) {
+	  this.isToggled = true;
+	} else if (config.defaultOpen == 'desktop-only' && !isMobile) {
+	  this.isToggled = true;
+	} else {
+	  this.isToggled = false;
+	}
+
     this.defaultIcon = config.defaultIcon || 'mdi:chevron-down'
     this.closeIcon = config.closeIcon || 'mdi:chevron-down'
     this.openIcon = config.openIcon || 'mdi:chevron-up'
@@ -178,20 +187,34 @@ class VerticalStackInCard extends HTMLElement {
         outline: none;
         background-color: var(--divider-color);
       }
-
       .card-list-${this.id} {
-        display: none;
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        clip: rect(0 0 0 0);
+        clip-path: inset(50%);
+        border: 0;
+        white-space: nowrap;
       }
-
       .card-list-${this.id}.is-toggled {
-        display: block;
+        position: unset;
+        width: unset;
+        height: unset;
+        margin: unset;
+        padding: unset;
+        overflow: unset;
+        clip: unset;
+        clip-path: unset;
+        border: unset;
+        white-space: unset;
       }
-
       .toggle-button__icon-${this.id} {
         color: var(--paper-item-icon-color, #aaa);
       }
-
-      .type-custom-collapsable-cards-st {
+      .type-custom-collapsable-cards {
         background: transparent;
       }
     `;
@@ -204,7 +227,7 @@ customElements.define('collapsable-cards-st', VerticalStackInCard);
 window.customCards = window.customCards || [];
 window.customCards.push({
   type: "collapsable-cards-st",
-  name: "Collapsable Card",
+  name: "Collapsable Card ST",
   preview: false,
   description: "The Collapsable Card allows you to hide other cards behind a dropdown toggle."
 });
