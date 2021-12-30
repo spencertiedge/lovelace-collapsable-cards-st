@@ -1,4 +1,4 @@
-console.log(`%ccollapsable-cards-st\n%cVersion: ${'0.4.0'}`, 'color: rebeccapurple; font-weight: bold;', '');
+console.log(`%ccollapsable-cards-st\n%cVersion: ${'0.1.8'}`, 'color: rebeccapurple; font-weight: bold;', '');
 
 class VerticalStackInCard extends HTMLElement {
   constructor() {
@@ -13,16 +13,7 @@ class VerticalStackInCard extends HTMLElement {
     if (!config || !config.cards || !Array.isArray(config.cards)) {
       throw new Error('Supply the `cards` property');
     }
-
-	let isMobile = window.matchMedia("only screen and (max-width: 760px)").matches;
-	if (config.defaultOpen == true) {
-	  this.isToggled = true;
-	} else if (config.defaultOpen == 'desktop-only' && !isMobile) {
-	  this.isToggled = true;
-	} else {
-	  this.isToggled = false;
-	}
-
+    this.isToggled = config.defaultOpen || false
     this.defaultIcon = config.defaultIcon || 'mdi:chevron-down'
     this.closeIcon = config.closeIcon || 'mdi:chevron-down'
     this.openIcon = config.openIcon || 'mdi:chevron-up'
@@ -188,33 +179,15 @@ class VerticalStackInCard extends HTMLElement {
         background-color: var(--divider-color);
       }
       .card-list-${this.id} {
-        position: absolute;
-        width: 1px;
-        height: 1px;
-        margin: 0;
-        padding: 0;
-        overflow: hidden;
-        clip: rect(0 0 0 0);
-        clip-path: inset(50%);
-        border: 0;
-        white-space: nowrap;
+        display: none;
       }
       .card-list-${this.id}.is-toggled {
-        position: unset;
-        width: unset;
-        height: unset;
-        margin: unset;
-        padding: unset;
-        overflow: unset;
-        clip: unset;
-        clip-path: unset;
-        border: unset;
-        white-space: unset;
+        display: block;
       }
       .toggle-button__icon-${this.id} {
         color: var(--paper-item-icon-color, #aaa);
       }
-      .type-custom-collapsable-cards {
+      .type-custom-collapsable-cards-st {
         background: transparent;
       }
     `;
@@ -227,7 +200,7 @@ customElements.define('collapsable-cards-st', VerticalStackInCard);
 window.customCards = window.customCards || [];
 window.customCards.push({
   type: "collapsable-cards-st",
-  name: "Collapsable Card ST",
+  name: "Collapsable Card",
   preview: false,
   description: "The Collapsable Card allows you to hide other cards behind a dropdown toggle."
 });
